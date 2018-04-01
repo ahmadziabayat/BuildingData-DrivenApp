@@ -3,12 +3,31 @@
   <p> Here's a list of all your latest check-ins</p>
 
   <div class="search cf">
-    <h2> search Checkins</h2>
-    <input type="text" ng-modal="query"
+    <h2>search Checkins</h2>
+    <input type="text" ng-model="query"
     placeholder="search for users">
+
+    <div class="formgroup">
+      <span class="label">by:</span>
+      <select ng-model="order">
+        <option value="firstname">First Name</option>
+        <option value="lastname">Last Name</option>
+        <option value="date">Date</option>
+      </select>
+    </div>
+    <div class="formgroup">
+      <input type="radio" id="dirasceding"
+      ng-model="direction" name="direction">
+      <label for="direction">asc</label>&nbsp;
+
+      <input type="radio" id="dirdescending"
+      ng-model="direction" name="direction" value="reverse">
+      <label for="dirdescending">desc</label>
+    </div>
   </div>
+
   <ul class="userlist cf">
-    <li ng-repeat="checkin in checkins">
+    <li ng-repeat="checkin in checkins | orderBy: order:direction | filter: query">
       <div class="checkin">
         <div class="buttons">
 
