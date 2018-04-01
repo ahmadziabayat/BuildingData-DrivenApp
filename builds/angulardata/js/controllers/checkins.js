@@ -15,7 +15,7 @@ myApp.controller('CheckInsController',
       $scope.checkins = checkinsList;
 
       $scope.order = 'firstname';
-      $scope.direction = 'null';
+      $scope.direction = 'asceding';
       $scope.query = '';
 
       $scope.addCheckin = function(){
