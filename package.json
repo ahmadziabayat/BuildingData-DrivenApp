@@ -4,7 +4,7 @@
     "description": "An application for taking attendance at meetups. Part of my Data Driven Web Applications with Angular.js course at Lynda.com",
     "repository": {
         "type": "git",
-        "url": "git@github.com:ahmadziabayat/BuildingData-DrivenApp.git"
+        "url": "https://github.com/ahmadziabayat/BuildingData-DrivenApp.git"
     },
     "author": "Ahmad Zia Bayat",
     "devDependencies": {
