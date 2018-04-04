@@ -24,17 +24,33 @@
       ng-model="direction" name="direction" value="reverse">
       <label for="dirdescending">desc</label>
     </div>
+
+    <div class="buttons cf">
+      <button class="btn btn-pick"
+        ng-hide="recordId"
+        ng-click="pickRandom()">Pick Random</button>
+
+      <button class="btn btn-pick"
+        ng-show="recordId"
+        ng-click="recordId=''">Reset</button>
+
+    </div>
   </div>
 
   <ul class="userlist cf">
-    <li ng-repeat="checkin in checkins | orderBy: order:direction | filter: query">
+    <li ng-class="checkin.userState" ng-repeat="checkin in checkins | orderBy: order:direction | filter: { $id: recordId, $: query}">
       <div class="checkin">
         <div class="buttons">
 
           <button class="btn btn-delete tooltip"
             ng-click="deleteCheckin(checkin.$id)" name="button">
               <span>Delete this Checkins</span>
-          </button>
+          </button> <!--Delete checkin-->
+
+          <button class="btn btn-love tooltip"
+            ng-click="showLove(checkin)">
+            <span>Show the love</span>
+          </button> <!--Show Love Button-->
 
         </div>
 
@@ -44,6 +60,33 @@
             {{checkin.date | date: "MMM d, yy h:mm a"}}
           </div> <!--date -->
         </div><!--info-->
+        <div class="showcheckins" ng-show="checkin.show">
+          <form class="cf"
+            ng-submit="giveLove(checkin, checkin.giftText)"
+            novalidate>
+
+            <input type="text" name="giftText"
+              placeholder="What are you giving"
+              ng-required="true" ng-model="checkin.giftText">
+
+            <button class="btn" type="submit"
+              ng-disabled="myform.$invalid">+</button>
+          </form> <!--givelove-->
+          <ul class="awardslist cf">
+            <li class="cf" ng-repeat="(key, award) in checkin.awards">
+              <div class="award">
+                <div class="button">
+                  <button class="btn btn-delete award tooltip"
+                  ng-click="deleteLove(checkin, key)">
+                  <span>Delete the award</span>
+                  </button>
+                </div>
+                {{award.name}}</div>
+            </li>
+
+          </ul>
+
+       </div> <!--showchiekins-->
       </div><!--checkin-->
     </li>
   </ul>
