@@ -26,7 +26,7 @@ myApp.controller('CheckInsController',
 
       $scope.showLove = function(myCheckin){
         myCheckin.show = !myCheckin.show;
-        if(myCheckin.userState == 'expanded'){
+        if(myCheckin.userState == 'expanded'){ // if statement to expanded giveLove field or not 
           myCheckin.userState ='';
         }else {
           myCheckin.userState = 'expanded';
